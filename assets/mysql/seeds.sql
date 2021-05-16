@@ -13,12 +13,12 @@ VALUES ("HR"),
 --   salary DEC(17, 2),
 --   department_id INT
 INSERT INTO role (title, salary, department_id)
-VALUES ("Manager", 120000000, 1),
-("Manager", 120000000, 2),
-("Manager", 120000000, 3),
-("Manager", 120000000, 4),
-("Manager", 120000000, 5),
-("Intern", 2000000, 5);
+VALUES ("Manager", 1200000.00, 1),
+("Manager", 1200000.00, 2),
+("Manager", 1200000.00, 3),
+("Manager", 1200000.00, 4),
+("Manager", 1200000.00, 5),
+("Intern", 20000.00, 5);
 
 -- -- EMPLOYEE --
 --   first_name VARCHAR(30),
@@ -32,7 +32,7 @@ VALUES ("Brandon", "Sanderson", 1, NULL),
 ("Brandon", "Sanderson", 3, NULL),
 ("Brandon", "Sanderson", 4, NULL),
 ("Brandon", "Sanderson", 5, NULL),
-("Patrick", "Rothfuss", 1, 1);
+("Patrick", "Rothfuss", 6, 1);
 
 -- VIEW TABLES --
 SELECT * FROM department;
@@ -44,3 +44,6 @@ INNER JOIN role
 INNER JOIN employee
 WHERE role.department_id = department.id
 AND employee.role_id = role.id;
+
+-- -- DISABLE SAFE UPDATES --
+-- SET SQL_SAFE_UPDATES = 0;
