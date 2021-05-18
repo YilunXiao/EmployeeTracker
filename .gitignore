@@ -1,4 +1,5 @@
 node_modules
 requirements
 package-lock.json
+test.js
 .DS_Store/
