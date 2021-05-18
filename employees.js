@@ -3,9 +3,11 @@ const mysql = require('mysql');
 const inquirer = require('inquirer');
 const cTable = require('console.table');
 const Questions = require('./assets/classes/Questions')
+const Queries = require('./assets/classes/Queries');
 
 // VARIABLES
 const questions = new Questions();
+const queries = new Queries();
 
 const querys = [
   "SELECT * FROM songs",
@@ -107,14 +109,22 @@ const createData = (table) => {
     // role id
     // manager id (optional)
 }
+
 // Read
 const readData = (table) => {
-  //
+  connection.query(queries.read(table), (err, res) => {
+    if (err) throw err;
+    console.table(res);
+    // ends connection
+    connection.end();
+  });
 }
+
 // Update
 const updateData = (table) => {
   //
 }
+
 // Delete
 const deleteData = (table) => {
   //

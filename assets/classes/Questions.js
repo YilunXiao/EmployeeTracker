@@ -12,11 +12,11 @@ class Questions {
                     value: "create"
                 }, 
                 {
-                    name: "UPDATE departments, roles, or employees",
+                    name: "View departments, roles, or employees",
                     value: "read"
                 },
                 {
-                    name: "ADD department, role, or employee",
+                    name: "Update department, role, or employee",
                     value: "update"
                 },
                 {
