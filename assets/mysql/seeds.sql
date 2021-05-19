@@ -42,8 +42,8 @@ SELECT * FROM employee;
 SELECT employee.id, first_name, last_name, title, department.name, salary, manager_id FROM department
 INNER JOIN role
 INNER JOIN employee
-WHERE role.department_id = department.id
-AND employee.role_id = role.id;
+ON role.department_id = department.id
+WHERE employee.role_id = role.id;
 
 -- -- DISABLE SAFE UPDATES --
 -- SET SQL_SAFE_UPDATES = 0;

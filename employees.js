@@ -1,4 +1,5 @@
 // DEPENDENCIES
+require('dotenv').config();
 const mysql = require('mysql');
 const inquirer = require('inquirer');
 const cTable = require('console.table');
@@ -21,16 +22,16 @@ const querys = [
 
 // Create connection with sql server
 const connection = mysql.createConnection({
-  host: 'localhost',
+  host: DB_HOST,
 
   // Your port, if not 3306
   port: 3306,
 
   // Your username
-  user: 'root',
+  user: DB_USER,
 
   // Be sure to update with your own MySQL password!
-  password: 'abc123',
+  password: DB_PASS,
   database: 'trackemployees_db',
 });
 
