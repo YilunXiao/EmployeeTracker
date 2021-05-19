@@ -10,7 +10,7 @@ class Queries {
     }
     createRol(title, salary, depId) {
         // title, salary, department id
-        return `INSERT INTO role (title, salary, department_id) VALUES `
+        return `INSERT INTO role (title, salary, department_id) VALUES ("${title}", ${salary}, ${depId})`
     }
     createEmp(fname, lname, roleId, manId) {
         // first name, last name, role id, manager id (optional)
