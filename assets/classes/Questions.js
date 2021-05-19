@@ -95,6 +95,20 @@ class Questions {
     // no questions needed
 
     // UPDATE
+    updateRole() {
+        return [
+            {
+                type: 'input',
+                name: 'empId',
+                message: 'What is the ID of the employee you want to update?',
+            },
+            {
+                type: 'input',
+                name: 'roleId',
+                message: 'What is the ID of their new role?',
+            }
+        ];
+    }
     
     // DELETE
 }

@@ -1,5 +1,5 @@
 // DEPENDENCIES
-require('dotenv').config();
+require('dotenv').config(); // Requires .env file with DB_HOST, DB_USER, DB_PASS
 const mysql = require('mysql');
 const inquirer = require('inquirer');
 const cTable = require('console.table');
@@ -146,7 +146,20 @@ const readData = (table) => {
 
 // Update
 const updateData = (table) => {
-  //
+  // Update employee role
+  inquirer
+      .prompt(
+        questions.updateRole()
+      )
+      .then(answers => {
+        connection.query(queries.updateRole(answers.empId, answers.roleId), (err, res) => {
+          if (err) throw err;
+          console.table(res);
+          // go back to beginning
+          start();
+        });
+      })
+      .catch(error => console.log(error));
 }
 
 // Delete

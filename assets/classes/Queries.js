@@ -26,7 +26,11 @@ class Queries {
     }
 
     // UPDATE
-    update(table) {}
+    updateRole(empId, roleId) {
+        return `UPDATE employee
+        SET role_id = ${roleId}
+        WHERE id = ${empId};`
+    }
     // DELETE
     delete(table) {}
 }
