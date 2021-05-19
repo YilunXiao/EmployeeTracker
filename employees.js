@@ -116,6 +116,20 @@ const createData = (table) => {
       break;
     case "employee":
       // first name, last name, role id, manager id (optional)
+      inquirer
+      .prompt(
+        // title, salary, department id
+        questions.createEmp()
+      )
+      .then(answers => {
+        connection.query(queries.createEmp(answers.fname, answers.lname, answers.roleId, answers.managerId), (err, res) => {
+          if (err) throw err;
+          console.table(res);
+          // go back to beginning
+          start();
+        });
+      })
+      .catch(error => console.log(error));
       break;
   }
 }

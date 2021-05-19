@@ -69,6 +69,26 @@ class Questions {
     }
     createEmp() {
         // first name, last name, role id, manager id (optional)
+        return [{
+            type: 'input',
+            name: 'fname',
+            message: 'What is the first name of the employee?',
+        },
+        {
+            type: 'input',
+            name: 'lname',
+            message: 'What is the last name of the employee?',
+        },
+        {
+            type: 'input',
+            name: 'roleId',
+            message: 'What is the role ID of the employee?',
+        },
+        {
+            type: 'input',
+            name: 'managerId',
+            message: 'What is the ID of the manager of this employee?',
+        }];
     }
 
     // READ
