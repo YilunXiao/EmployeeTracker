@@ -2,13 +2,13 @@
 class Questions {
     // Which CRUD the user wants to do
     crud() {
-        return {
+        return [{
             type: 'list',
             name: 'action',
             message: 'What do you want to do?',
             choices: [
                 {
-                    name: "ADD department, role, or employee",
+                    name: "Add department, role, or employee",
                     value: "create"
                 }, 
                 {
@@ -20,7 +20,7 @@ class Questions {
                     value: "update"
                 },
                 {
-                    name: "DELETE departments, roles, or employees",
+                    name: "Delete departments, roles, or employees",
                     value: "delete"
                 },
                 {
@@ -28,7 +28,7 @@ class Questions {
                     value: "exit"
                 }
             ]
-        };
+        }];
     }
 
     // Which table does the user want to change/view
@@ -37,10 +37,46 @@ class Questions {
             type: 'list',
             name: 'table',
             message: 'Which do you want use?',
-            choices: ["Department", "Role", "Employee"]
+            choices: ["department", "role", "employee"]
         };
     }
 
+    // CREATE
+    createDep() {
+        return [{
+            type: 'input',
+            name: 'name',
+            message: 'What is the name of the department?',
+        }];
+    }
+    createRol() {
+        // title, salary, department id
+        return [{
+            type: 'input',
+            name: 'title',
+            message: 'What is the role?',
+        },
+        {
+            type: 'input',
+            name: 'salary',
+            message: 'What is the salary for the role?',
+        },
+        {
+            type: 'input',
+            name: 'depId',
+            message: 'What is the ID of the department for the role?',
+        }];
+    }
+    createEmp() {
+        // first name, last name, role id, manager id (optional)
+    }
+
+    // READ
+    // no questions needed
+
+    // UPDATE
+    
+    // DELETE
 }
 
 module.exports = Questions;

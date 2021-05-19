@@ -10,28 +10,19 @@ const Queries = require('./assets/classes/Queries');
 const questions = new Questions();
 const queries = new Queries();
 
-const querys = [
-  "SELECT * FROM songs",
-  "SELECT * FROM songs WHERE genre = 'R&B'",
-  `SELECT employee.id, first_name, last_name, title, department.name, salary, manager_id FROM department
-  INNER JOIN role
-  INNER JOIN employee
-  WHERE role.department_id = department.id
-  AND employee.role_id = role.id;`
-]
 
 // Create connection with sql server
 const connection = mysql.createConnection({
-  host: DB_HOST,
+  host: process.env.DB_HOST,
 
   // Your port, if not 3306
   port: 3306,
 
   // Your username
-  user: DB_USER,
+  user: process.env.DB_USER,
 
   // Be sure to update with your own MySQL password!
-  password: DB_PASS,
+  password: process.env.DB_PASS,
   database: 'trackemployees_db',
 });
 
@@ -42,23 +33,14 @@ connection.connect((err) => {
   start();
 });
 
-// Make a query with connection
-const connectQuery = () => {
-    connection.query(querys[2], (err, res) => {
-        if (err) throw err;
-        console.table(res);
-        // ends connection
-        connection.end();
-    });
-};
 
 // Start inquiries 
 const start = () => {
   inquirer
-  .prompt([
+  .prompt(
     // What CRUD user wants to perform
     questions.crud()
-  ])
+  )
   .then(answers => {
     if (answers.action === "exit") {
       // Exit
@@ -73,10 +55,10 @@ const start = () => {
 
 const chooseTable = (action) => {
   inquirer
-  .prompt([
+  .prompt(
     // What table (department, role, employee) user wants to change
     questions.table()
-  ])
+  )
   .then(answers => {
     switch (action) {
       case "create":
@@ -96,28 +78,55 @@ const chooseTable = (action) => {
   .catch(error => console.log(error));
 }
 
-// Create
+// Create to a given table
 const createData = (table) => {
-  // department
-    // department name
-  // role
-    // title
-    // salary
-    // department id
-  // employee
-    // first name
-    // last name
-    // role id
-    // manager id (optional)
+  // console.log(table);
+  switch (table) {
+    case "department":
+      inquirer 
+      .prompt(
+        // What is name of new department
+        questions.createDep()
+      )
+      .then(answers => {
+        connection.query(queries.createDep(answers.name), (err, res) => {
+          if (err) throw err;
+          console.table(res);
+          // go back to beginning
+          start();
+        });
+      })
+      .catch(error => console.log(error))
+      break;
+    case "role":
+      inquirer
+      .prompt(
+        // title, salary, department id
+        questions.createRol()
+      )
+      .then(answers => {
+        connection.query(queries.createRol(answers.title, answers.salary, answers.depId), (err, res) => {
+          if (err) throw err;
+          console.table(res);
+          // go back to beginning
+          start();
+        });
+      })
+      .catch(error => console.log(error));
+      break;
+    case "employee":
+      // first name, last name, role id, manager id (optional)
+      break;
+  }
 }
 
-// Read
+// Read from given table
 const readData = (table) => {
   connection.query(queries.read(table), (err, res) => {
     if (err) throw err;
     console.table(res);
-    // ends connection
-    connection.end();
+    // go back to beginning
+    start();
   });
 }
 

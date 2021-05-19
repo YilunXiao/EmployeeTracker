@@ -5,11 +5,22 @@ class Queries {
     }
 
     // CREATE
-    create(table) {}
+    createDep(name) {
+        return `INSERT INTO department (name) VALUES ("${name}");`
+    }
+    createRol(title, salary, depId) {
+        // title, salary, department id
+        return `INSERT INTO role (title, salary, department_id) VALUES `
+    }
+    createEmp(fname, lname, roleId, manId) {
+        // first name, last name, role id, manager id (optional)
+    }
+
     // READ
     read(table) {
-        return `SELECT * FROM ${table}`;
+        return `SELECT * FROM ${table};`;
     }
+
     // UPDATE
     update(table) {}
     // DELETE
