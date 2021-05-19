@@ -3,3 +3,4 @@ requirements
 package-lock.json
 test.js
 .DS_Store/
+.env
